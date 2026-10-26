@@ -1,0 +1,20 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Limitless Launcher",
+  "version": "1.0.0",
+  "identifier": "dev.ash.launcher",
+  "build": { "frontendDist": "../ui" },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [{ "title": "Limitless Launcher", "width": 1100, "height": 700, "minWidth": 520, "minHeight": 380, "visible": false, "decorations": false, "transparent": true }],
+    "security": {
+      "csp": "default-src 'self'; img-src 'self' asset: http://asset.localhost data:",
+      "assetProtocol": { "enable": true, "scope": ["$DATA/Launcher/**"] }
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "icon": ["icons/icon.ico"]
+  }
+}

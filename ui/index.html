@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Limitless Launcher</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-tauri-drag-region>
+  <img id="bg" alt="" draggable="false">
+  <div id="shade"></div>
+  <div id="card" data-tauri-drag-region>
+  <header data-tauri-drag-region>
+    <button id="back" hidden>← Home</button>
+    <strong id="crumb" hidden></strong>
+    <input id="q" type="search" placeholder="Search…" autocomplete="off">
+    <button id="newfolder">New folder</button>
+    <button id="rescan">Rescan</button>
+    <button id="add">Add</button>
+    <button id="gear" title="Settings" aria-label="Settings">⚙</button>
+  </header>
+  <main id="grid"></main>
+  <div id="empty" hidden><div class="wordmark" role="img" aria-label="Limitless Launcher"></div><p>Drop an .exe or shortcut here, or click Add.</p></div>
+  </div>
+  <aside id="side" data-tauri-drag-region><div id="brand" role="img" aria-label="Limitless Launcher" data-tauri-drag-region></div><nav id="sidelist"></nav></aside>
+  <div id="wc">
+    <button id="wmin" title="Minimize" aria-label="Minimize">&#xE921;</button>
+    <button id="wmax" title="Maximize" aria-label="Maximize">&#xE922;</button>
+    <button id="wclose" title="Close" aria-label="Close">&#xE8BB;</button>
+  </div>
+
+  <dialog id="dlg">
+    <form id="form">
+      <label>Name <input name="name" required></label>
+      <label>Target <span class="row"><input name="target" required placeholder="C:\path\game.exe or steam://rungameid/…"><button type="button" id="browse">Browse</button></span></label>
+      <label>Arguments <input name="args"></label>
+      <div class="row end">
+        <button type="button" id="remove">Remove</button>
+        <button type="button" id="cancel">Cancel</button>
+        <button type="submit">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="fdlg">
+    <form id="fform">
+      <label>Folder name <input name="name" required></label>
+      <div class="row end">
+        <button type="button" id="fcancel">Cancel</button>
+        <button type="submit">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="cdlg">
+    <form method="dialog">
+      <p id="ctext"></p>
+      <div class="row end"><button value="no">Cancel</button><button value="yes" id="cyes"></button></div>
+    </form>
+  </dialog>
+
+  <dialog id="sdlg">
+    <form method="dialog" id="sform">
+      <label>Theme
+        <select name="theme">
+          <option value="system">System</option>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </label>
+      <label>Sidebar
+        <select name="side">
+          <option value="right">Right</option>
+          <option value="left">Left</option>
+        </select>
+      </label>
+      <label>Background
+        <span class="row"><button type="button" id="bgpick">Choose image…</button><button type="button" id="bgclear">Clear</button></span>
+      </label>
+      <label>Opacity <input type="range" name="dim" min="0" max="1" step="any"></label>
+      <label>Desktop blur
+        <select name="material">
+          <option value="acrylic">Acrylic</option>
+          <option value="mica">Mica (wallpaper only)</option>
+          <option value="none">Off (clear glass)</option>
+        </select>
+      </label>
+      <label>Background blur <input type="range" name="blur" min="0" max="20" step="any"></label>
+      <label>Frosted edge <input type="range" name="edge" min="0" max="24" step="any"></label>
+      <label class="check"><input type="checkbox" name="exit"> Close the launcher after launching something</label>
+      <button type="button" id="unhide"></button>
+      <div class="row end"><button>Close</button></div>
+    </form>
+  </dialog>
+
+  <div id="menu" hidden></div>
+  <input id="pick" type="file" accept="image/*" hidden>
+  <div id="toast" popover="manual"></div>
+  <script src="app.js"></script>
+</body>
+</html>
