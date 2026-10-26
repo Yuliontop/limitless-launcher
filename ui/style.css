@@ -21,18 +21,28 @@ input[type='range'] { appearance: none; height: 8px; padding: 0; border: 0; bord
 input[type='range']::-webkit-slider-thumb { appearance: none; width: 0; height: 8px; }
 
 /* window controls, tucked into the top-right corner of the frame */
-#wc { position: fixed; top: var(--edge); right: var(--edge); display: flex; gap: 2px; z-index: 5; }
+#wc { position: fixed; top: calc(var(--edge) + 4px); right: var(--edge); display: flex; gap: 2px; z-index: 5; } /* level with the logo */
+/* sidebar on the left: the controls float over the card, so keep them inside its border, level with the search row */
+body.side-left #wc { top: calc(var(--edge) + 1rem + 4px); right: calc(var(--edge) + 1px + 1rem); }
 #wc button { font-family: "Segoe Fluent Icons", "Segoe MDL2 Assets"; font-size: 10px; width: 34px; height: 28px; padding: 0; background: none; }
 #wc button:hover { background: var(--fill); }
 #wc #wclose:hover { background: #c42b1c; color: #fff; }
 
 /* sidebar: lives in the frame, no pane of its own */
-#side { overflow-y: auto; scrollbar-width: none; }
+#side { display: flex; flex-direction: column; overflow: hidden; }
+#sidelist { flex: 1; overflow-y: auto; scrollbar-width: none; }
+/* update card, pinned to the bottom of the sidebar */
+#update { display: flex; flex-direction: column; gap: .5rem; margin: .5rem; padding: .7rem; border-radius: 10px; border: 1px solid var(--rim); background: var(--fill); font-size: .85rem; }
+#update[hidden] { display: none; }
+#update button { background: CanvasText; color: Canvas; font-weight: 600; }
+#update button:hover { opacity: .85; }
+#verrow { justify-content: space-between; margin-bottom: .75rem; }
+#ver { opacity: .6; font-size: .85rem; }
 /* the logos are one-colour shapes (masks) painted in the text colour, so they're black or white per theme */
 #brand { height: 22px; margin: 7px .5rem; background: CanvasText; mask: url(logo.png) left center / contain no-repeat; }
 body.side-left { grid-template-columns: 220px minmax(0, 1fr); }
 body.side-left #side { order: -1; }
-body.side-left header { padding-right: calc(110px + 1rem); } /* room for the window controls */
+body.side-left header { padding-right: calc(106px + 1.5rem); } /* room for the window controls */
 #side p { font-size: .85rem; opacity: .6; margin: 1rem .5rem; }
 #side h3 { font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; opacity: .6; margin: 1rem .5rem .35rem; }
 .srow { display: flex; align-items: center; gap: .6rem; width: 100%; padding: .3rem .5rem; background: none; text-align: left; }

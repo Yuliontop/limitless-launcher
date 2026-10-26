@@ -22,7 +22,7 @@
   <main id="grid"></main>
   <div id="empty" hidden><div class="wordmark" role="img" aria-label="Limitless Launcher"></div><p>Drop an .exe or shortcut here, or click Add.</p></div>
   </div>
-  <aside id="side" data-tauri-drag-region><div id="brand" role="img" aria-label="Limitless Launcher" data-tauri-drag-region></div><nav id="sidelist"></nav></aside>
+  <aside id="side" data-tauri-drag-region><div id="brand" role="img" aria-label="Limitless Launcher" data-tauri-drag-region></div><nav id="sidelist"></nav><div id="update" hidden><span id="updver"></span><button id="updgo">Update</button></div></aside>
   <div id="wc">
     <button id="wmin" title="Minimize" aria-label="Minimize">&#xE921;</button>
     <button id="wmax" title="Maximize" aria-label="Maximize">&#xE922;</button>
@@ -89,6 +89,7 @@
       <label>Frosted edge <input type="range" name="edge" min="0" max="24" step="any"></label>
       <label class="check"><input type="checkbox" name="exit"> Close the launcher after launching something</label>
       <button type="button" id="unhide"></button>
+      <div class="row" id="verrow"><span id="ver"></span><button type="button" id="checkupd">Check for updates</button></div>
       <div class="row end"><button>Close</button></div>
     </form>
   </dialog>

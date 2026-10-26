@@ -263,6 +263,7 @@ fn scan() -> Vec<scan::Found> {
 fn main() {
     tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
+        .plugin(tauri_plugin_updater::Builder::new().build())
         .invoke_handler(tauri::generate_handler![load_library, save_library, data_dir, save_cover, remove_cover, import_bg, remove_bg, launch, icon, quit, scan])
         .run(tauri::generate_context!())
         .expect("error while running launcher");

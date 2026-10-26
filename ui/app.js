@@ -527,6 +527,7 @@ $('#gear').onclick = () => {
   const n = lib.items.filter((i) => i.hidden).length;
   $('#unhide').textContent = `Restore ${n} hidden game${n === 1 ? '' : 's'}`;
   $('#unhide').disabled = !n;
+  window.__TAURI__.app.getVersion().then((v) => ($('#ver').textContent = 'Limitless Launcher ' + v));
   $('#sdlg').showModal();
 };
 sform.exit.onchange = () => {
@@ -607,6 +608,42 @@ async function rescan() {
 }
 $('#rescan').onclick = rescan;
 
+// ---- updates ----------------------------------------------------------------
+
+// One check against GitHub per start (no polling). Installing runs the new installer, which restarts the app.
+let pendingUpdate = null;
+async function checkUpdate(manual) {
+  try {
+    pendingUpdate = await window.__TAURI__.updater.check();
+  } catch (e) {
+    if (manual) toast('Update check failed: ' + e);
+    return;
+  }
+  $('#update').hidden = !pendingUpdate;
+  if (pendingUpdate) $('#updver').textContent = `Version ${pendingUpdate.version} is available`;
+  else if (manual) toast("You're on the latest version", false);
+}
+$('#checkupd').onclick = () => checkUpdate(true);
+$('#updgo').onclick = async () => {
+  const b = $('#updgo');
+  b.disabled = true;
+  b.textContent = 'Downloading…';
+  let got = 0;
+  let total = 0;
+  try {
+    await save();
+    await pendingUpdate.downloadAndInstall((ev) => {
+      if (ev.event === 'Started') total = ev.data.contentLength ?? 0;
+      else if (ev.event === 'Progress' && total) b.textContent = `Downloading… ${Math.round(((got += ev.data.chunkLength) / total) * 100)}%`;
+      else if (ev.event === 'Finished') b.textContent = 'Installing…';
+    });
+  } catch (e) {
+    toast('Update failed: ' + e);
+    b.disabled = false;
+    b.textContent = 'Update';
+  }
+};
+
 (async () => {
   try {
     dataDir = await invoke('data_dir');
@@ -622,4 +659,5 @@ $('#rescan').onclick = rescan;
   appWindow.show(); // window starts hidden so there's no flash of the wrong theme
   if (!lib.items.length) rescan(); // first run
   else fetchIcons();
+  checkUpdate(false);
 })();
