@@ -7,6 +7,8 @@
 
 <p align="center">One small, fast hub for every game and app on your PC, whatever store it came from.</p>
 
+<p align="center"><img src="docs/screenshot.png" alt="Limitless Launcher: a frosted-glass window with a grid of game icons and a sidebar of pinned games, folders and recently played"></p>
+
 - **Every store in one grid:** finds your Steam, Epic and GOG games on its own; add anything else (an `.exe`, a shortcut, a `steam://` link) by dropping it on the window.
 - **Light:** about 80 MB of RAM, a 3 MB program, no background services. It can close itself when you launch a game.
 - **Yours to style:** frosted-glass window with Windows' own blur, adjustable opacity and frame, light/dark theme, image or GIF backgrounds, game icons pulled from each game's exe, custom covers.
@@ -16,7 +18,7 @@
 Grab `LimitlessLauncher-1.0.0-setup.exe` from the [latest release](../../releases/latest) and run it. Windows 10/11 (64-bit). The app isn't code-signed yet, so Windows SmartScreen may warn you: choose **More info → Run anyway**.
 
 ## Build from source
-Needs Rust, the Visual Studio C++ build tools and `cargo install tauri-cli --version "^2"`. Design and reasoning: [PLAN.md](PLAN.md). Tauri v2 (Rust + WebView2), plain HTML/CSS/JS front end, no npm.
+Needs Rust, the Visual Studio C++ build tools and `cargo install tauri-cli --version "^2"`. Tauri v2 (Rust + WebView2), plain HTML/CSS/JS front end, no npm.
 ```
 cd src-tauri
 cargo tauri build          # installer in src-tauri/target/release/bundle/nsis/

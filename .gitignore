@@ -2,3 +2,4 @@
 /src-tauri/gen/schemas/
 # source artwork (large originals); the app and README use the trimmed copies in ui/ and docs/
 /Logos/
+/PLAN.md
