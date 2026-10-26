@@ -13,7 +13,7 @@
 - **Organised:** folders, a sidebar (left or right) with pinned games and recently played, type-to-search and full keyboard control.
 
 ## Download
-Grab `Limitless Launcher_1.0.0_x64-setup.exe` from the [latest release](../../releases/latest) and run it. Windows 10/11 (64-bit). The app isn't code-signed yet, so Windows SmartScreen may warn you: choose **More info → Run anyway**.
+Grab `LimitlessLauncher-1.0.0-setup.exe` from the [latest release](../../releases/latest) and run it. Windows 10/11 (64-bit). The app isn't code-signed yet, so Windows SmartScreen may warn you: choose **More info → Run anyway**.
 
 ## Build from source
 Needs Rust, the Visual Studio C++ build tools and `cargo install tauri-cli --version "^2"`. Design and reasoning: [PLAN.md](PLAN.md). Tauri v2 (Rust + WebView2), plain HTML/CSS/JS front end, no npm.
